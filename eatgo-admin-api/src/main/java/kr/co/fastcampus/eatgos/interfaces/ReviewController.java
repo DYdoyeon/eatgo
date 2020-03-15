@@ -1,7 +1,8 @@
 package kr.co.fastcampus.eatgos.interfaces;
 
-import kr.co.fastcampus.eatgos.application.ReviewService;
 
+
+import kr.co.fastcampus.eatgos.application.ReviewService;
 import kr.co.fastcampus.eatgos.domain.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 public class ReviewController {
+
     @Autowired
     private ReviewService reviewService;
 

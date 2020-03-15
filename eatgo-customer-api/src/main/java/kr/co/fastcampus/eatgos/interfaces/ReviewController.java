@@ -1,3 +1,5 @@
+/*
+
 package kr.co.fastcampus.eatgos.interfaces;
 
 import kr.co.fastcampus.eatgos.application.ReviewService;
@@ -27,3 +29,4 @@ public class ReviewController {
 
     }
 }
+*/
