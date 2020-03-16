@@ -98,7 +98,7 @@ public class RestaurantServiceTest {
 
     @Test
     public void getRestaurantNotWithExisted() {
-        Restaurant restaurant = restaurantService.getRestaurant(100L);
+        Restaurant restaurant = restaurantService.getRestaurant(1004L);
         assertThat(restaurant.getId(), is(1004L));
     }
 

@@ -1,4 +1,4 @@
-/*
+
 
 package kr.co.fastcampus.eatgos.interfaces;
 
@@ -24,4 +24,3 @@ public class ReviewController {
     }
 
 }
-*/

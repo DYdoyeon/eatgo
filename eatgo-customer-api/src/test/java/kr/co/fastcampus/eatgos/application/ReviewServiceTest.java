@@ -1,5 +1,4 @@
-/*
-/*
+
 package kr.co.fastcampus.eatgos.application;
 
 import kr.co.fastcampus.eatgos.domain.Review;
@@ -34,4 +33,4 @@ public class ReviewServiceTest
 
     verify(reviewRepository).save(any());
 }
-}*/
+}
