@@ -13,11 +13,14 @@ public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
     @GetMapping("/restaurants")
-    public List<Restaurant> list(){
+    public List<Restaurant> list(@RequestParam("region") String region){
+
        // List<Restaurant> restaurants = new ArrayList<>();
 
      //   restaurants.add(new Restaurant(1004L,"Bob zip","Seoul"));
-      List<Restaurant> restaurants =restaurantService.getRestaurants();
+
+        List<Restaurant> restaurants =restaurantService.getRestaurants(region);
+
         return restaurants;
     }
 

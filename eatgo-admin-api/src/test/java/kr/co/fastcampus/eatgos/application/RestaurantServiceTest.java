@@ -3,8 +3,9 @@ package kr.co.fastcampus.eatgos.application;
 import kr.co.fastcampus.eatgos.domain.Restaurant;
 import kr.co.fastcampus.eatgos.domain.RestaurantRepository;
 import kr.co.fastcampus.eatgos.interfaces.RestaurantNotFoundException;
-import org.junit.Before;
+
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -23,7 +24,7 @@ public class RestaurantServiceTest {
     @Mock
     private RestaurantRepository restaurantRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
@@ -61,7 +62,9 @@ public class RestaurantServiceTest {
        }
 
 
-    @Test(expected = RestaurantNotFoundException.class)
+
+
+    @Test
     public void getRestaurantNotWithExisted() {
         Restaurant restaurant = restaurantService.getRestaurant(100L);
         assertThat(restaurant.getId(), is(1004L));

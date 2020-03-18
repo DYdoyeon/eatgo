@@ -4,7 +4,9 @@ package kr.co.fastcampus.eatgos.interfaces;
 
 import kr.co.fastcampus.eatgos.application.ReviewService;
 import kr.co.fastcampus.eatgos.domain.Review;
-import org.junit.Test;
+
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -57,5 +59,6 @@ public class ReviewControllerTest {
 
         verify(reviewService,never()).addReview(eq(1L),any());
     }
+
 
 }

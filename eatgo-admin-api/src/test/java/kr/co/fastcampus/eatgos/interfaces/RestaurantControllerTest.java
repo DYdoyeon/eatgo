@@ -1,6 +1,7 @@
 package kr.co.fastcampus.eatgos.interfaces;
 
 import kr.co.fastcampus.eatgos.application.RestaurantService;
+import kr.co.fastcampus.eatgos.domain.Restaurant;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

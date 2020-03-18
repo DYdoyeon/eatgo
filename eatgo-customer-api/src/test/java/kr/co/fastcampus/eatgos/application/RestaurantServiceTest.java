@@ -2,19 +2,19 @@ package kr.co.fastcampus.eatgos.application;
 
 import kr.co.fastcampus.eatgos.domain.*;
 import kr.co.fastcampus.eatgos.domain.MenuItem;
-import kr.co.fastcampus.eatgos.interfaces.RestaurantNotFoundException;
-import org.junit.Before;
-import org.junit.Test;
+
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
@@ -30,7 +30,7 @@ public class RestaurantServiceTest {
     @Mock
     private ReviewRepository reviewRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
@@ -62,7 +62,7 @@ public class RestaurantServiceTest {
 
 
         restaurants.add(restaurant);
-        given(restaurantRepository.findAll()).willReturn(restaurants);
+        given(restaurantRepository.findAllByAddressContaining("Seoul")).willReturn(restaurants);
         given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));
 
     }
@@ -94,15 +94,16 @@ public class RestaurantServiceTest {
     }
 
 
-    @Test(expected = RestaurantNotFoundException.class)
+    @Test
     public void getRestaurantNotWithExisted() {
-        Restaurant restaurant = restaurantService.getRestaurant(100L);
+        Restaurant restaurant = restaurantService.getRestaurant(1004L);
         assertThat(restaurant.getId(), is(1004L));
     }
 
     @Test
     public void getRestaurants() {
-        List<Restaurant> restaurants = restaurantService.getRestaurants();
+        String region="Seoul";
+        List<Restaurant> restaurants = restaurantService.getRestaurants(region);
         Restaurant restaurant = restaurants.get(0);
         assertThat(restaurant.getId(), is(1004L));
     }

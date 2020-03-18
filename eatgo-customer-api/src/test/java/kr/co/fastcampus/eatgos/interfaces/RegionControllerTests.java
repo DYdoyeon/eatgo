@@ -1,47 +1,50 @@
-/*
-
 package kr.co.fastcampus.eatgos.interfaces;
 
-
-import kr.co.fastcampus.eatgos.application.ReviewService;
-import kr.co.fastcampus.eatgos.domain.Review;
+import kr.co.fastcampus.eatgos.application.RegionService;
+import kr.co.fastcampus.eatgos.domain.Region;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.core.StringContains.containsString;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+
 @RunWith(SpringRunner.class)
-@WebMvcTest(ReviewController.class)
-public class ReviewControllerTest {
+@WebMvcTest(RegionController.class)
+public class RegionControllerTests {
+
     @Autowired
     MockMvc mvc;
 
-
-
     @MockBean
-    private ReviewService reviewService;
+    private RegionService regionService;
+
     @Test
-    public void list() throws Exception {
+    public void list() throws Exception{
+        List<Region> regions = new ArrayList<>();
+        regions.add(Region.builder().name("Seoul").build());
 
-        List<Review> reviews = new ArrayList<>();
-        reviews.add(Review.builder().description("Cool!").build());
-
-        given(reviewService.getReviews()).willReturn(reviews);
-        mvc.perform(get("/reviews"))
+        given(regionService.getRegions()).willReturn(regions);
+        mvc.perform(get("/regions"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Cool!")));
-      }
+                .andExpect(content().string(containsString("Seoul")));
 
-}*/
+
+    }
+}
+
