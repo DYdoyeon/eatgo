@@ -2,10 +2,8 @@ package kr.co.fastcampus.eatgos.application;
 
 import kr.co.fastcampus.eatgos.domain.*;
 import kr.co.fastcampus.eatgos.domain.MenuItem;
-import kr.co.fastcampus.eatgos.interfaces.RestaurantNotFoundException;
 
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -64,7 +62,7 @@ public class RestaurantServiceTest {
 
 
         restaurants.add(restaurant);
-        given(restaurantRepository.findAll()).willReturn(restaurants);
+        given(restaurantRepository.findAllByAddressContaining("Seoul")).willReturn(restaurants);
         given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));
 
     }
@@ -104,7 +102,8 @@ public class RestaurantServiceTest {
 
     @Test
     public void getRestaurants() {
-        List<Restaurant> restaurants = restaurantService.getRestaurants();
+        String region="Seoul";
+        List<Restaurant> restaurants = restaurantService.getRestaurants(region);
         Restaurant restaurant = restaurants.get(0);
         assertThat(restaurant.getId(), is(1004L));
     }

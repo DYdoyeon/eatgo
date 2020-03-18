@@ -42,8 +42,8 @@ public class RestaurantControllerTest {
 
         restaurants.add(Restaurant.builder().id(1004L).name("Bob zip").address("Seoul").build());
 
-        given(restaurantService.getRestaurants()).willReturn(restaurants);
-        mvc.perform(get("/restaurants"))
+        given(restaurantService.getRestaurants("Seoul")).willReturn(restaurants);
+        mvc.perform(get("/restaurants?region=Busan"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(
                         containsString("\"id\":1004")
