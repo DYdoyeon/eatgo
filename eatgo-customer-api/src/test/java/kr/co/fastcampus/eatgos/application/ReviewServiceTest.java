@@ -3,8 +3,9 @@ package kr.co.fastcampus.eatgos.application;
 
 import kr.co.fastcampus.eatgos.domain.Review;
 import kr.co.fastcampus.eatgos.domain.ReviewRepository;
-import org.junit.Before;
-import org.junit.Test;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -19,7 +20,7 @@ public class ReviewServiceTest
     private ReviewRepository reviewRepository;
 
 
-    @Before
+    @BeforeEach
     public void setUp(){
         MockitoAnnotations.initMocks(this);
         reviewService = new ReviewService(reviewRepository);
@@ -32,5 +33,5 @@ public class ReviewServiceTest
     reviewService.addReview(1004L,review);
 
     verify(reviewRepository).save(any());
-}
+    }
 }

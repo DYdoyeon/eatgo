@@ -2,17 +2,19 @@ package kr.co.fastcampus.eatgos.application;
 
 import kr.co.fastcampus.eatgos.domain.Region;
 import kr.co.fastcampus.eatgos.domain.RegionRepository;
-import org.junit.Before;
-import org.junit.Test;
+
+
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -22,7 +24,7 @@ public class RegionServiceTests {
     @Mock
     private RegionRepository regionRepository;
 
-    @Before
+    @BeforeEach
     public void setUp(){
         MockitoAnnotations.initMocks(this);
         regionService = new RegionService(regionRepository);

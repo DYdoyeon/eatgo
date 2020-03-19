@@ -1,5 +1,6 @@
 package kr.co.fastcampus.eatgos.application;
 
+
 import kr.co.fastcampus.eatgos.domain.Restaurant;
 import kr.co.fastcampus.eatgos.domain.RestaurantRepository;
 import kr.co.fastcampus.eatgos.interfaces.RestaurantNotFoundException;

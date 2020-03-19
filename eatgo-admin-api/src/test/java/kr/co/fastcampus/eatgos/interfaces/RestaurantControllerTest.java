@@ -2,8 +2,7 @@ package kr.co.fastcampus.eatgos.interfaces;
 
 import kr.co.fastcampus.eatgos.application.RestaurantService;
 import kr.co.fastcampus.eatgos.domain.Restaurant;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -21,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
+
 @WebMvcTest(RestaurantController.class)
 public class RestaurantControllerTest {
     @Autowired
@@ -102,7 +101,8 @@ public class RestaurantControllerTest {
 
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(" {\"name\" : \"BeRyong\",\"address\":\"Busan\"}"))
+                .content("{\"categoryId\":1,\"name\":\"Beryong\"," +
+                        "\"address\":\"Busan\"}"))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("location","/restaurants/1004"))
                 .andExpect(content().string("{}"));
@@ -114,28 +114,29 @@ public class RestaurantControllerTest {
      
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(" {\"\" : \"\",\"\":\"\"}"))
+                .content(" { \"categoryId\" : 1\"name\" : \"\",\"\"address:\"\"}"))
                 .andExpect(status().isBadRequest());
 
     }
 
 
     @Test
-    public void updateWithValidData() throws Exception {
-            mvc.perform(patch("/restaurants/1004")
+    public void updateWithValidData() throws Exception { mvc.perform(patch("/restaurants/1004")
             .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"name\": \"JOKER Bar\",\"address\":\"Busan\"}"))
+            .content("{\"categoryId\":1,\"name\":\"JOKER Bar\"," +
+                    "\"address\":\"Busan\"}"))
             .andExpect(status().isOk());
 
-            verify(restaurantService).updateRestaurant(1004L,"JOKER Bar","Busan");
+        verify(restaurantService)
+                .updateRestaurant(1004L, "JOKER Bar", "Busan");
     }
 
     @Test
     public void updateWithInValidData() throws Exception {
-            mvc.perform(patch("/restaurants/1004")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"\": \"\",\"\":\"\"}"))
-            .andExpect(status().isBadRequest());
+        mvc.perform(patch("/restaurants/1004")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"categoryId\":1,\"name\":\"\",\"address\":\"\"}"))
+                .andExpect(status().isBadRequest());
         }
        // public void updateWithoutDate() throw Exception{} 처럼 만들어서 테스트하면 좋아
 }

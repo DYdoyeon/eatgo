@@ -2,10 +2,10 @@ package kr.co.fastcampus.eatgos.application;
 
 import kr.co.fastcampus.eatgos.domain.Restaurant;
 import kr.co.fastcampus.eatgos.domain.RestaurantRepository;
-import kr.co.fastcampus.eatgos.interfaces.RestaurantNotFoundException;
 
-import org.junit.Test;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
@@ -34,13 +34,15 @@ public class RestaurantServiceTest {
     }
 
 
-
     private void mockRestaurantRepository() {
         List<Restaurant> restaurants = new ArrayList<>();
         Restaurant restaurant = Restaurant.builder()
                 .id(1004L)
+                .categoryId(1L)
                 .name("Bob zip")
                 .address("Seoul")
+
+                .categoryId(1L)
               //  .menuItems(new ArrayList<MenuItem>())
                 .build();
 
@@ -50,9 +52,6 @@ public class RestaurantServiceTest {
         given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));
 
     }
-
-
-
     @Test
     public void getRestaurantWithExisted() {
         Restaurant restaurant = restaurantService.getRestaurant(1004L);
@@ -66,7 +65,7 @@ public class RestaurantServiceTest {
 
     @Test
     public void getRestaurantNotWithExisted() {
-        Restaurant restaurant = restaurantService.getRestaurant(100L);
+        Restaurant restaurant = restaurantService.getRestaurant(1004L);
         assertThat(restaurant.getId(), is(1004L));
     }
 
@@ -88,6 +87,8 @@ public class RestaurantServiceTest {
 
         Restaurant restaurant = Restaurant.builder()
         .name("BeRyong")
+
+                .categoryId(1L)
         .address("Busan")
         .build();
         Restaurant created = restaurantService.addRestaurant(restaurant);
@@ -99,6 +100,7 @@ public class RestaurantServiceTest {
         Restaurant restaurant = Restaurant.builder()
                 .id(1004L)
                 .name("Bob zip")
+                .categoryId(1L)
                 .address("Seoul")
                 .build();
         given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));

@@ -2,8 +2,7 @@ package kr.co.fastcampus.eatgos.interfaces;
 
 import kr.co.fastcampus.eatgos.application.RegionService;
 import kr.co.fastcampus.eatgos.domain.Region;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -25,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(RegionController.class)
 public class RegionControllerTests {
 
