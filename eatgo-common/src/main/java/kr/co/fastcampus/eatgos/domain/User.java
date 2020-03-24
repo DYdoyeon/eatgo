@@ -33,6 +33,7 @@ public class User {
     @Setter
     private Long level;
 
+    private String password;
     public boolean isAdmin() {
 
         return level>=100;
@@ -42,7 +43,6 @@ public class User {
         return level>0;
 
     }
-
     public void deactivate() {
 
         level = 0L;
