@@ -25,12 +25,14 @@ repositories {
 dependencies {
 
 
+
     testCompile 'junit:junit:4.12'
     compile 'junit:junit:4.12'
 
     implementation ('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation 'com.h2database:h2'
     implementation 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok:1.18.10'
@@ -57,13 +59,3 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-
-jar {
-    enabled = true
-}
-
-bootJar {
-    enabled = false
-}
-

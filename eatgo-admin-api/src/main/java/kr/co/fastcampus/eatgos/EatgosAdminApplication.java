@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class EatgosApplication {
+public class EatgosAdminApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(EatgosApplication.class, args);
+		SpringApplication.run(EatgosAdminApplication.class, args);
 	}
 
 }
